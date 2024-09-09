@@ -1,11 +1,11 @@
 ﻿using Grpc.Core;
-using Randevucum.Authentication.Orchestrator.API.Services.Adapters;
-using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
+using Randevucum.Authentication.Orchestrator.API.Controllers.Adapters;
+using Randevucum.Authentication.Orchestrator.API.Controllers.Interfaces;
 using Randevucum.Authentication.Orchestrator.Domain;
 
-namespace Randevucum.Authentication.Orchestrator.API.Services.Grpc;
+namespace Randevucum.Authentication.Orchestrator.API.Controllers.Grpc;
 
-public class AuthenticationGrpcService(ILogger<AuthenticationGrpcService> logger, IAuthenticationCommonService authenticationService) : AuthService.AuthServiceBase
+public class AuthenticationGrpcController(ILogger<AuthenticationGrpcController> logger, IAuthenticationCommonController authenticationService) : AuthService.AuthServiceBase
 {
 
     public override async Task<AuthResponse> GoogleLogin(GoogleLoginRequest request, ServerCallContext context)

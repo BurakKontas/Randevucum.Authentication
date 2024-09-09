@@ -1,12 +1,11 @@
-﻿using Microsoft.Extensions.Options;
-using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
+﻿using Randevucum.Authentication.Orchestrator.API.Controllers.Interfaces;
 using Randevucum.Authentication.Orchestrator.Contracts.Requests;
 using Randevucum.Authentication.Orchestrator.Contracts.Responses;
 
-namespace Randevucum.Authentication.Orchestrator.API.Services.GraphQL;
+namespace Randevucum.Authentication.Orchestrator.API.Controllers.GraphQL;
 
 [QueryType]
-public class AuthenticationQueryService(IAuthenticationCommonService authenticationService)
+public class AuthenticationQueryController(IAuthenticationCommonController authenticationService)
 {
     [GraphQLName("GenerateGoogleLoginUrl")]
     public async Task<string> GenerateGoogleLoginUrl(CancellationToken cancellationToken)

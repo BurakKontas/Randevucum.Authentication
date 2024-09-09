@@ -1,9 +1,9 @@
 ﻿using Randevucum.Authentication.Orchestrator.Contracts.Requests;
 using Randevucum.Authentication.Orchestrator.Contracts.Responses;
 
-namespace Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
+namespace Randevucum.Authentication.Orchestrator.API.Controllers.Interfaces;
 
-public interface IAuthenticationCommonService
+public interface IAuthenticationCommonController
 {
     Task<AuthResponse> GoogleLogin(GoogleLoginRequest request, CancellationToken cancellationToken);
     Task<AuthResponse> EmailLogin(EmailLoginRequest request, CancellationToken cancellationToken);

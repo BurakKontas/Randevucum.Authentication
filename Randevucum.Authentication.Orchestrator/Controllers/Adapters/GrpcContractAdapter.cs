@@ -1,6 +1,6 @@
 ﻿using Randevucum.Authentication.Orchestrator.Domain;
 
-namespace Randevucum.Authentication.Orchestrator.API.Services.Adapters;
+namespace Randevucum.Authentication.Orchestrator.API.Controllers.Adapters;
 
 public static class GrpcContractAdapter
 {

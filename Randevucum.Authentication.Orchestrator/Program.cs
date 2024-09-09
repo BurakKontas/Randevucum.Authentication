@@ -1,9 +1,10 @@
 ﻿using MassTransit;
 using Microsoft.AspNetCore.Authentication;
+using Randevucum.Authentication.Orchestrator.API.Controllers.Common;
+using Randevucum.Authentication.Orchestrator.API.Controllers.Grpc;
+using Randevucum.Authentication.Orchestrator.API.Controllers.Interfaces;
 using Randevucum.Authentication.Orchestrator.API.Extensions;
 using Randevucum.Authentication.Orchestrator.API.Middlewares;
-using Randevucum.Authentication.Orchestrator.API.Services.Common;
-using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
 using Steeltoe.Discovery.Client;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ builder.Services.DefineGraphQL();
 
 builder.Services.AddDiscoveryClient(builder.Configuration);
 
-builder.Services.AddScoped<IAuthenticationCommonService, AuthenticationCommonService>();
+builder.Services.AddScoped<IAuthenticationCommonController, AuthenticationCommonController>();
 
 var app = builder.Build();
 
@@ -34,8 +35,7 @@ app.UseMiddleware<ApiGatewayMiddleware>();
 AppContext.SetSwitch(
     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
-app.MapGrpcService<AuthenticationService>()
-    .AllowAnonymous();
+app.MapGrpcService<AuthenticationGrpcController>();
 
 app.MapGraphQL("/authentication");
 

@@ -1,11 +1,11 @@
-﻿using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
+﻿using Randevucum.Authentication.Orchestrator.API.Controllers.Interfaces;
 using Randevucum.Authentication.Orchestrator.Contracts.Requests;
 using Randevucum.Authentication.Orchestrator.Contracts.Responses;
 
-namespace Randevucum.Authentication.Orchestrator.API.Services.GraphQL;
+namespace Randevucum.Authentication.Orchestrator.API.Controllers.GraphQL;
 
 [MutationType]
-public class AuthenticationMutationService(IAuthenticationCommonService authenticationService)
+public class AuthenticationMutationController(IAuthenticationCommonController authenticationService)
 {
     [GraphQLName("GoogleLogin")]
     public async Task<AuthResponse> GoogleLogin(GoogleLoginRequest request, CancellationToken cancellationToken)

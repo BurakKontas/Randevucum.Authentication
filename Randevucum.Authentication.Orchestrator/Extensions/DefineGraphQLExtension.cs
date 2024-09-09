@@ -1,6 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 using HotChocolate.Types.Pagination;
-using Randevucum.Authentication.Orchestrator.API.Services.GraphQL;
+using Randevucum.Authentication.Orchestrator.API.Controllers.GraphQL;
 
 namespace Randevucum.Authentication.Orchestrator.API.Extensions;
 
@@ -11,9 +11,9 @@ public static class DefineGraphQLExtension
         services
             .AddGraphQLServer()
             .AddQueryType()
-            .AddTypeExtension<AuthenticationQueryService>()
+            .AddTypeExtension<AuthenticationQueryController>()
             .AddMutationType()
-            .AddTypeExtension<AuthenticationMutationService>()
+            .AddTypeExtension<AuthenticationMutationController>()
             .SetPagingOptions(new PagingOptions { DefaultPageSize = 20 });
         return services;
     }

@@ -1,10 +1,10 @@
-﻿using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
+﻿using Randevucum.Authentication.Orchestrator.API.Controllers.Interfaces;
 using Randevucum.Authentication.Orchestrator.Contracts.Requests;
 using Randevucum.Authentication.Orchestrator.Contracts.Responses;
 
-namespace Randevucum.Authentication.Orchestrator.API.Services.Common;
+namespace Randevucum.Authentication.Orchestrator.API.Controllers.Common;
 
-public class AuthenticationCommonService : IAuthenticationCommonService
+public class AuthenticationCommonController : IAuthenticationCommonController
 {
     public async Task<AuthResponse> GoogleLogin(GoogleLoginRequest request, CancellationToken cancellationToken)
     {
