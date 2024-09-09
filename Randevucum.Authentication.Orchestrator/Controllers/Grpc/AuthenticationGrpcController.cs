@@ -7,7 +7,6 @@ namespace Randevucum.Authentication.Orchestrator.API.Controllers.Grpc;
 
 public class AuthenticationGrpcController(ILogger<AuthenticationGrpcController> logger, IAuthenticationCommonController authenticationService) : AuthService.AuthServiceBase
 {
-
     public override async Task<AuthResponse> GoogleLogin(GoogleLoginRequest request, ServerCallContext context)
     {
         var result = await authenticationService.GoogleLogin(request.ToContract(), context.CancellationToken);
