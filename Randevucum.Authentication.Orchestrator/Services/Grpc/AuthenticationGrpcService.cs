@@ -1,6 +1,6 @@
 ﻿using Grpc.Core;
 using Randevucum.Authentication.Orchestrator.API.Services.Adapters;
-using Randevucum.Authentication.Orchestrator.API.Services.Common;
+using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
 using Randevucum.Authentication.Orchestrator.Domain;
 
 namespace Randevucum.Authentication.Orchestrator.API.Services.Grpc;

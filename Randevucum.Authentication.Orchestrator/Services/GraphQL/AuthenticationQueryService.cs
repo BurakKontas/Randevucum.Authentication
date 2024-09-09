@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using Randevucum.Authentication.Orchestrator.API.Services.Common;
+using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
 using Randevucum.Authentication.Orchestrator.Contracts.Requests;
 using Randevucum.Authentication.Orchestrator.Contracts.Responses;
 

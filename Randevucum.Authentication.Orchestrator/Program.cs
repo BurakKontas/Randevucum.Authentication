@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Randevucum.Authentication.Orchestrator.API.Extensions;
 using Randevucum.Authentication.Orchestrator.API.Middlewares;
 using Randevucum.Authentication.Orchestrator.API.Services.Common;
+using Randevucum.Authentication.Orchestrator.API.Services.Interfaces;
 using Steeltoe.Discovery.Client;
 
 var builder = WebApplication.CreateBuilder(args);
