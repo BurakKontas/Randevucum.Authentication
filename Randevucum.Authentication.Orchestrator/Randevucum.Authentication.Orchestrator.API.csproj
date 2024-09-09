@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Randevucum.Authentication.Orchestrator.Application\Randevucum.Authentication.Orchestrator.Application.csproj" />
     <ProjectReference Include="..\Randevucum.Authentication.Orchestrator.Contracts\Randevucum.Authentication.Orchestrator.Contracts.csproj" />
     <ProjectReference Include="..\Randevucum.Authentication.Orchestrator.Domain\Randevucum.Authentication.Orchestrator.Domain.csproj" />
   </ItemGroup>
