@@ -1,0 +1,17 @@
+services:
+  randevucum.authentication.microservices.oauth2.api:
+    image: ${DOCKER_REGISTRY-}randevucumauthenticationmicroservicesoauth2api
+    build:
+      context: .
+      dockerfile: Randevucum.Authentication.Microservices.OAuth2.API/Dockerfile
+
+  randevucum.authentication.orchestrator.api:
+    image: ${DOCKER_REGISTRY-}randevucumauthenticationorchestratorapi
+    ports:
+        - "3000:8080" # HTTP
+        - "3001:8081" # HTTPS
+        # - "3002:8082" # gRPC
+    build:
+      context: .
+      dockerfile: Randevucum.Authentication.Orchestrator/Dockerfile
+
