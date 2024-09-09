@@ -7,13 +7,13 @@ public class SecurityStrategyFactory(IConfiguration configuration)
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public ISecurityStrategy CreateStrategy(string protocol)
+    public ISecurityStrategy? CreateStrategy(string protocol)
     {
         return protocol switch
         {
             "HTTP/2" => new Http2SecurityStrategy(),
             "HTTP/1.1" => new HttpSecurityStrategy(_configuration),
-            _ => throw new NotSupportedException("Protocol not supported.")
+            _ => null
         };
     }
 }
