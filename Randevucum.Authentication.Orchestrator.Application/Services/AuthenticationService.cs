@@ -12,9 +12,9 @@ public class AuthenticationService(IBus bus) : IAuthenticationService
 
     public async Task<AuthResponse> GoogleLogin(GoogleLoginRequest request, CancellationToken cancellationToken)
     {
-        var requestEvent = new GoogleLoginReceivedEvent(request.AuthenticationCode);
+        var requestEvent = new GoogleLoginRequestedEvent(request.AuthenticationCode);
 
-        var response = await _bus.Request<GoogleLoginReceivedEvent, GoogleLoginResultedEvent>(requestEvent, cancellationToken: cancellationToken);
+        var response = await _bus.Request<GoogleLoginRequestedEvent, GoogleLoginResultedEvent>(requestEvent, cancellationToken: cancellationToken);
 
         var authResponse = new AuthResponse(
             new OperationResult(response.Message.IsSuccess, response.Message.Message, response.Message.StatusCode),
