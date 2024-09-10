@@ -23,6 +23,16 @@ services:
     networks:
       - backend
 
+  randevucum.authentication.microservices.basic.api:
+    image: ${DOCKER_REGISTRY-}randevucumauthenticationmicroservicesbasicapi
+    build:
+      context: .
+      dockerfile: Randevucum.Authentication.Microservices.Basic.API/Dockerfile
+    depends_on:
+      - rabbitmq
+    networks:
+      - backend
+
   rabbitmq:
     image: rabbitmq:3-management
     expose:
