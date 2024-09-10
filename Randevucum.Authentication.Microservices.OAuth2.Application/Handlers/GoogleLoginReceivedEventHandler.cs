@@ -1,5 +1,5 @@
 ﻿using MassTransit;
-using Randevucum.Authentication.Common.GoogleLogin;
+using Randevucum.Authentication.Common.OAuth.GoogleLogin;
 
 namespace Randevucum.Authentication.Microservices.OAuth2.Application.Handlers;
 

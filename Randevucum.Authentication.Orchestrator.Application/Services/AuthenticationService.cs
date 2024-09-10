@@ -1,5 +1,5 @@
 ﻿using MassTransit;
-using Randevucum.Authentication.Common.GoogleLogin;
+using Randevucum.Authentication.Common.OAuth.GoogleLogin;
 using Randevucum.Authentication.Orchestrator.Contracts.Common;
 using Randevucum.Authentication.Orchestrator.Contracts.Requests;
 using Randevucum.Authentication.Orchestrator.Contracts.Responses;

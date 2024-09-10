@@ -25,9 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.O
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.Orchestrator.Contracts", "Randevucum.Authentication.Orchestrator.Contracts\Randevucum.Authentication.Orchestrator.Contracts.csproj", "{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Common", "Randevucum.Authentication.Common\Randevucum.Authentication.Common.csproj", "{03CC50A7-8720-4794-803D-9B2F8A19EE07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.Common", "Randevucum.Authentication.Common\Randevucum.Authentication.Common.csproj", "{03CC50A7-8720-4794-803D-9B2F8A19EE07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Microservices.OAuth2.Application", "Randevucum.Authentication.Microservices.OAuth2.Application\Randevucum.Authentication.Microservices.OAuth2.Application.csproj", "{1564F7D2-9765-4329-B9DE-1EECA45A4661}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.Microservices.OAuth2.Application", "Randevucum.Authentication.Microservices.OAuth2.Application\Randevucum.Authentication.Microservices.OAuth2.Application.csproj", "{1564F7D2-9765-4329-B9DE-1EECA45A4661}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basic", "Basic", "{233E69DE-E46E-4F63-B83A-0F1BDBC3C444}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,7 @@ Global
 		{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB} = {D08BA1CF-B7B8-4F26-9DC5-8D06932D3530}
 		{03CC50A7-8720-4794-803D-9B2F8A19EE07} = {6B141644-E69C-4924-901B-45656C803ED0}
 		{1564F7D2-9765-4329-B9DE-1EECA45A4661} = {492B18E8-D1D8-4999-983C-7FA1E9936461}
+		{233E69DE-E46E-4F63-B83A-0F1BDBC3C444} = {101EA987-6666-456D-A35A-D6DAF9AE82E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5749BFA-70B2-4F3A-8747-07F7E524D5F4}
