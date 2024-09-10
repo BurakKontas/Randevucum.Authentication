@@ -13,7 +13,6 @@ public class SecurityStrategyFactory(IConfiguration configuration)
         {
             "HTTP/2" => new Http2SecurityStrategy(),
             "HTTP/1.1" => new HttpSecurityStrategy(_configuration),
-            _ => null
         };
     }
 }
