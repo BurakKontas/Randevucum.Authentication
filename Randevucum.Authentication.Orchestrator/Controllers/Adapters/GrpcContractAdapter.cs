@@ -67,6 +67,7 @@ public static class GrpcContractAdapter
     #endregion
 
     #region Contract Response to gRPC Response
+
     public static AuthResponse ToGrpc(this Contracts.Responses.AuthResponse response) => new() { OperationResult = response.OperationResult.ToGrpc(), AccessToken = response.AccessToken, RefreshToken = response.RefreshToken };
     public static ChangePasswordResponse ToGrpc(this Contracts.Responses.ChangePasswordResponse response) => new() { OperationResult = response.OperationResult.ToGrpc() };
     public static DeleteUserResponse ToGrpc(this Contracts.Responses.DeleteUserResponse response) => new() { OperationResult = response.OperationResult.ToGrpc() };
@@ -83,6 +84,6 @@ public static class GrpcContractAdapter
     #endregion
 
     #region Contract Common to gRPC Common
-    public static OperationResult ToGrpc(this Contracts.Common.OperationResult result) => new() { Success = result.Success, Message = result.Message, StatusCode = result.StatusCode };
+    public static OperationResult ToGrpc(this Contracts.Common.OperationResult result) => new() { Success = result.Success, Message = result.Message ?? string.Empty, StatusCode = result.StatusCode };
     #endregion
 }
