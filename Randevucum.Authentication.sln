@@ -17,13 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.M
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F9F73EEF-9DBE-428F-89AF-064C83A49384}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Orchestrator.Domain", "Randevucum.Authentication.Orchestrator.Domain\Randevucum.Authentication.Orchestrator.Domain.csproj", "{F90FA4E7-BA83-454A-83BA-B666598DB529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.Orchestrator.Domain", "Randevucum.Authentication.Orchestrator.Domain\Randevucum.Authentication.Orchestrator.Domain.csproj", "{F90FA4E7-BA83-454A-83BA-B666598DB529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Orchestrator.Application", "Randevucum.Authentication.Orchestrator.Application\Randevucum.Authentication.Orchestrator.Application.csproj", "{A1B2A336-15DD-42C0-8354-4E0174C2E0A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.Orchestrator.Application", "Randevucum.Authentication.Orchestrator.Application\Randevucum.Authentication.Orchestrator.Application.csproj", "{A1B2A336-15DD-42C0-8354-4E0174C2E0A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Orchestrator.Infrastructure", "Randevucum.Authentication.Orchestrator.Infrastructure\Randevucum.Authentication.Orchestrator.Infrastructure.csproj", "{11867CE6-B918-4781-B4E2-53575A95BE36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.Orchestrator.Infrastructure", "Randevucum.Authentication.Orchestrator.Infrastructure\Randevucum.Authentication.Orchestrator.Infrastructure.csproj", "{11867CE6-B918-4781-B4E2-53575A95BE36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Orchestrator.Contracts", "Randevucum.Authentication.Orchestrator.Contracts\Randevucum.Authentication.Orchestrator.Contracts.csproj", "{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Randevucum.Authentication.Orchestrator.Contracts", "Randevucum.Authentication.Orchestrator.Contracts\Randevucum.Authentication.Orchestrator.Contracts.csproj", "{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Common", "Randevucum.Authentication.Common\Randevucum.Authentication.Common.csproj", "{03CC50A7-8720-4794-803D-9B2F8A19EE07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randevucum.Authentication.Microservices.OAuth2.Application", "Randevucum.Authentication.Microservices.OAuth2.Application\Randevucum.Authentication.Microservices.OAuth2.Application.csproj", "{1564F7D2-9765-4329-B9DE-1EECA45A4661}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,14 @@ Global
 		{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03CC50A7-8720-4794-803D-9B2F8A19EE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CC50A7-8720-4794-803D-9B2F8A19EE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03CC50A7-8720-4794-803D-9B2F8A19EE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03CC50A7-8720-4794-803D-9B2F8A19EE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1564F7D2-9765-4329-B9DE-1EECA45A4661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1564F7D2-9765-4329-B9DE-1EECA45A4661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1564F7D2-9765-4329-B9DE-1EECA45A4661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1564F7D2-9765-4329-B9DE-1EECA45A4661}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +83,8 @@ Global
 		{A1B2A336-15DD-42C0-8354-4E0174C2E0A5} = {D08BA1CF-B7B8-4F26-9DC5-8D06932D3530}
 		{11867CE6-B918-4781-B4E2-53575A95BE36} = {D08BA1CF-B7B8-4F26-9DC5-8D06932D3530}
 		{0374D45F-B8C4-4F4B-B896-A4C4E7CF48EB} = {D08BA1CF-B7B8-4F26-9DC5-8D06932D3530}
+		{03CC50A7-8720-4794-803D-9B2F8A19EE07} = {6B141644-E69C-4924-901B-45656C803ED0}
+		{1564F7D2-9765-4329-B9DE-1EECA45A4661} = {492B18E8-D1D8-4999-983C-7FA1E9936461}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5749BFA-70B2-4F3A-8747-07F7E524D5F4}

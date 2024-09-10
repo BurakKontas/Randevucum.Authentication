@@ -4,6 +4,10 @@ services:
     build:
       context: .
       dockerfile: Randevucum.Authentication.Microservices.OAuth2.API/Dockerfile
+    depends_on:
+      - rabbitmq
+    networks:
+      - backend
 
   randevucum.authentication.orchestrator.api:
     image: ${DOCKER_REGISTRY-}randevucumauthenticationorchestratorapi
@@ -14,4 +18,23 @@ services:
     build:
       context: .
       dockerfile: Randevucum.Authentication.Orchestrator/Dockerfile
+    depends_on:
+      - rabbitmq
+    networks:
+      - backend
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    expose:
+      - "5672"
+    ports:
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
