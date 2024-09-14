@@ -1,4 +1,5 @@
-﻿using Randevucum.Authentication.Microservices.Basic.Domain.Primitives;
+﻿using Randevucum.Authentication.Microservices.Basic.Domain.DomainEvents;
+using Randevucum.Authentication.Microservices.Basic.Domain.Primitives;
 using Randevucum.Authentication.Microservices.Basic.Domain.Specification;
 using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 
@@ -6,13 +7,13 @@ namespace Randevucum.Authentication.Microservices.Basic.Domain.Entities;
 
 public class User : Entity
 {
-    public Guid Id { get; private set; }
+    public UserId Id { get; private set; }
     public Email Email { get; private set; }
     public Password Password { get; private set; }
     public bool EmailConfirmed { get; set; }
     public DateTime LastLogin { get; private set; }
 
-    private User(Guid id, Email email, Password password)
+    private User(UserId id, Email email, Password password)
     {
         Id = id;
         Email = email;
@@ -21,14 +22,14 @@ public class User : Entity
         LastLogin = DateTime.MinValue;
     }
 
-    public static User Create(Guid id, Email email, Password password)
+    public static User Create(UserId id, Email email, Password password)
     {
         return new User(id, email, password);
     }
 
     public static User Create(Email email, Password password)
     {
-        return new User(Guid.NewGuid(), email, password);
+        return new User(new UserId(Guid.NewGuid()), email, password);
     }
 
     public void UpdateEmail(Email newEmail)
