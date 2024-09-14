@@ -50,6 +50,11 @@ public class User : Entity
         Raise(new UserLoggedInDomainEvent(Id, LastLogin));
     }
 
+    public void ConfirmEmail()
+    {
+        EmailConfirmed = true;
+    }
+
     public bool CheckIfEmailIsConfirmed(ISpecification<User> specification)
     {
         return specification.IsSatisfiedBy(this);
