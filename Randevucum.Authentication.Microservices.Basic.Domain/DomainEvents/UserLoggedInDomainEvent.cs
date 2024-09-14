@@ -5,6 +5,7 @@ namespace Randevucum.Authentication.Microservices.Basic.Domain.DomainEvents;
 
 public record UserLoggedInDomainEvent(Guid Id, UserId UserId, DateTime DateTime) : DomainEvent(Id)
 {
-    public UserLoggedInDomainEvent(UserId UserId, DateTime DateTime) : this(Guid.NewGuid(), UserId, DateTime) 
-    { }
+    public UserLoggedInDomainEvent(UserId UserId, DateTime DateTime) : this(Guid.NewGuid(), UserId, DateTime)
+    {
+    }
 }
