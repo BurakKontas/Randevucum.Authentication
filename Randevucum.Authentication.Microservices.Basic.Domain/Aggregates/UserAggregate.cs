@@ -1,6 +1,7 @@
 ﻿using Randevucum.Authentication.Microservices.Basic.Domain.Entities;
 using Randevucum.Authentication.Microservices.Basic.Domain.Repositories;
 using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
+using System;
 
 namespace Randevucum.Authentication.Microservices.Basic.Domain.Aggregates;
 
@@ -22,7 +23,7 @@ public class UserAggregate(IUserRepository userRepository, User user = null)
             throw new ArgumentException("Password must be at least 6 characters long.");
         }
 
-        User = new User(Guid.NewGuid(), new Email(email), new Password(password));
+        User = User.Create(Guid.NewGuid(), new Email(email), new Password(password));
         _userRepository.Add(User);
     }
 
