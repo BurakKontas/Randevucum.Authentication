@@ -23,7 +23,7 @@ public class UserAggregate(IUserRepository userRepository, User user = null)
             throw new ArgumentException("Password must be at least 6 characters long.");
         }
 
-        User = User.Create(Guid.NewGuid(), new Email(email), new Password(password));
+        User = User.Create(new Email(email), new Password(password));
         _userRepository.Add(User);
     }
 
