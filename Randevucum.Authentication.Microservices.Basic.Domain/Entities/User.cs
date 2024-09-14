@@ -52,6 +52,7 @@ public class User : Entity
 
     public void ConfirmEmail()
     {
+        Raise(new UserEmailConfirmedDomainEvent(Id, Email));
         EmailConfirmed = true;
     }
 
