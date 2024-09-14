@@ -25,8 +25,14 @@ public class UserAggregate(IUserRepository userRepository, User user = null!) : 
             throw new ArgumentException("Password must be at least 6 characters long.");
         }
 
+
         User = User.Create(new Email(email), new Password(password));
+
+        var domainEvent = new UserRegisteredDomainEvent(User.Id);
+
         _userRepository.Add(User);
+
+        Arise(domainEvent);
     }
 
     public void ConfirmEmail()
@@ -36,7 +42,7 @@ public class UserAggregate(IUserRepository userRepository, User user = null!) : 
             throw new InvalidOperationException("User not found.");
         }
 
-        var domainEvent = new UserEmailConfirmedDomainEvent(Guid.NewGuid(), User.Id, User.Email);
+        var domainEvent = new UserEmailConfirmedDomainEvent(User.Id, User.Email);
 
         User.EmailConfirmed = true;
         _userRepository.Update(User);
@@ -59,7 +65,7 @@ public class UserAggregate(IUserRepository userRepository, User user = null!) : 
             throw new InvalidOperationException("New email address is already in use.");
         }
 
-        var domainEvent = new UserEmailChangedDomainEvent(Guid.NewGuid(), User.Id, User.Email, email);
+        var domainEvent = new UserEmailChangedDomainEvent(User.Id, User.Email, email);
 
         User.UpdateEmail(email);
         _userRepository.Update(User);
@@ -74,7 +80,7 @@ public class UserAggregate(IUserRepository userRepository, User user = null!) : 
             throw new ArgumentException("Password must be at least 6 characters long.");
         }
 
-        var domainEvent = new UserPasswordChangedDomainEvent(Guid.NewGuid(), User.Id, User.Password, new Password(newPassword));
+        var domainEvent = new UserPasswordChangedDomainEvent(User.Id, User.Password, new Password(newPassword));
 
         User.UpdatePassword(new Password(newPassword));
         _userRepository.Update(User);
@@ -89,7 +95,7 @@ public class UserAggregate(IUserRepository userRepository, User user = null!) : 
             throw new InvalidOperationException("User not found.");
         }
 
-        var domainEvent = new UserLoggedInDomainEvent(Guid.NewGuid(), User.Id, DateTime.Now);
+        var domainEvent = new UserLoggedInDomainEvent(User.Id, DateTime.Now);
 
         User.MarkAsLoggedIn();
         _userRepository.Update(User);
