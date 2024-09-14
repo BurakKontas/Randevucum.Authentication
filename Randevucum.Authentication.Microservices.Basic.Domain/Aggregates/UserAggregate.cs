@@ -5,7 +5,7 @@ using System;
 
 namespace Randevucum.Authentication.Microservices.Basic.Domain.Aggregates;
 
-public class UserAggregate(IUserRepository userRepository, User user = null)
+public class UserAggregate(IUserRepository userRepository, User user = null!)
 {
     private readonly IUserRepository _userRepository = userRepository;
     public User User { get; private set; } = user;
