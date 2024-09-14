@@ -5,7 +5,7 @@ using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 
 namespace Randevucum.Authentication.Microservices.Basic.Domain.Entities;
 
-public class User : Entity
+public class User
 {
     public UserId Id { get; private set; }
     public Email Email { get; private set; }
@@ -34,25 +34,21 @@ public class User : Entity
 
     public void UpdateEmail(Email newEmail)
     {
-        Raise(new UserEmailChangedDomainEvent(Id, Email, newEmail));
         Email = newEmail;
     }
 
     public void UpdatePassword(Password newPassword)
     {
-        Raise(new UserPasswordChangedDomainEvent(Id, Password, newPassword));
         Password = newPassword;
     }
 
     public void MarkAsLoggedIn()
     {
         LastLogin = DateTime.UtcNow;
-        Raise(new UserLoggedInDomainEvent(Id, LastLogin));
     }
 
     public void ConfirmEmail()
     {
-        Raise(new UserEmailConfirmedDomainEvent(Id, Email));
         EmailConfirmed = true;
     }
 
