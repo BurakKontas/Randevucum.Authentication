@@ -1,15 +1,43 @@
-﻿using MediatR;
+﻿using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Randevucum.Authentication.Microservices.Basic.Application
+namespace Randevucum.Authentication.Microservices.Basic.Application;
+
+public static class DependencyInjection
 {
-    public static class DependencyInjection
+    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
+        services.DefineMassTransit(configuration);
+        services.DefineMediatr();
+        return services;
+    }
+
+    private static void DefineMassTransit(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddMassTransit(busConfigurator =>
         {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(ApplicationAssembly.Assembly));
-            return services;
-        }
+            busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+            busConfigurator.AddConsumers(ApplicationAssembly.Assembly);
+
+            busConfigurator.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.Host(configuration.GetConnectionString("RabbitMQ"), hst =>
+                {
+                    hst.Username("username");
+                    hst.Password("password");
+                });
+
+                cfg.UseInMemoryOutbox(context);
+
+                cfg.ConfigureEndpoints(context);
+            });
+        });
+    }
+
+    private static void DefineMediatr(this IServiceCollection services)
+    {
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(ApplicationAssembly.Assembly));
     }
 }
