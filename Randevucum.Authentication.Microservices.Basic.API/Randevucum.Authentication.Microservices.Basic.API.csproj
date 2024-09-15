@@ -14,4 +14,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Randevucum.Authentication.Microservices.Basic.Application\Randevucum.Authentication.Microservices.Basic.Application.csproj" />
+    <ProjectReference Include="..\Randevucum.Authentication.Microservices.Basic.Infrastructure\Randevucum.Authentication.Microservices.Basic.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
