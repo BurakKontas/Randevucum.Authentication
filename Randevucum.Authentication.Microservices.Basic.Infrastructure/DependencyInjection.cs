@@ -17,17 +17,9 @@ public static class DependencyInjection
 
     public static void AddCockroachOptions(this IServiceCollection services, IConfiguration configuration)
     {
-        var readOptionsValue = configuration.GetSection("CockroachDBRead").Value;
-        var writeOptionsValue = configuration.GetSection("CockroachDBWrite").Value;
+        services.Configure<CockroachOptions>("CockroachRead", _ =>configuration.GetSection("CockroachDBRead"));
+        services.Configure<CockroachOptions>("CockroachWrite", _ => configuration.GetSection("CockroachDBWrite"));
 
-        if (readOptionsValue is null) throw new ArgumentNullException($"CockroachDBRead options are not found in the configuration.");
-        if (writeOptionsValue is null) throw new ArgumentNullException($"CockroachDBWrite options are not found in the configuration.");
-        
-        var readOptions = JsonSerializer.Deserialize<CockroachOptions>(readOptionsValue);
-        var writeOptions = JsonSerializer.Deserialize<CockroachOptions>(writeOptionsValue);
-
-        CockroachOptionsProvider.Configure(readOptions!, writeOptions!);
+        services.AddSingleton<CockroachOptionsProvider>();
     }
-
-
 }
