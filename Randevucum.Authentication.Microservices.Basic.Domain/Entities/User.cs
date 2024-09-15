@@ -12,6 +12,7 @@ public class User
     public Password Password { get; private set; }
     public bool EmailConfirmed { get; set; }
     public DateTime LastLogin { get; private set; }
+    public bool IsOAuth { get; private set; }
 
     private User(UserId id, Email email, Password password)
     {
@@ -20,6 +21,7 @@ public class User
         Password = password;
         EmailConfirmed = false;
         LastLogin = DateTime.MinValue;
+        IsOAuth = false;
     }
 
     public static User Create(UserId id, Email email, Password password)
@@ -50,6 +52,11 @@ public class User
     public void ConfirmEmail()
     {
         EmailConfirmed = true;
+    }
+
+    public void MarkAsOAuth()
+    {
+        IsOAuth = true;
     }
 
     public bool CheckIfEmailIsConfirmed(ISpecification<User> specification)
