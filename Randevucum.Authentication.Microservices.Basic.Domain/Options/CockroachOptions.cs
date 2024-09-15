@@ -4,14 +4,14 @@ using Randevucum.Authentication.Microservices.Basic.Domain.Enums.Extensions;
 
 namespace Randevucum.Authentication.Microservices.Basic.Domain.Options;
 
-public class CockroachOptions(string host, int port, string database, string username, string password, CockroachOptionsSSLMode sslMode = CockroachOptionsSSLMode.Disable)
+public class CockroachOptions
 {
-    private string Host { get; } = host;
-    private int Port { get; } = port;
-    private string Database { get; } = database;
-    private string Username { get; } = username;
-    private string Password { get; } = password;
-    private CockroachOptionsSSLMode SSLMode { get; } = sslMode;
+    public required string Host { get; set; }
+    public required int Port { get; set; }
+    public required string Database { get; set; }
+    public required string Username { get; set; }
+    public required string Password { get; set; }
+    public required CockroachOptionsSSLMode SSLMode { get; set; }
 
     public string ConnectionString => $"Host={Host};Port={Port};Database={Database};Username={Username};Password={Password};SSL Mode={SSLMode.Value()}";
 }

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Text.Json;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Randevucum.Authentication.Microservices.Basic.Domain.Options;
 using Randevucum.Authentication.Microservices.Basic.Domain.Providers;
@@ -17,9 +15,16 @@ public static class DependencyInjection
 
     public static void AddCockroachOptions(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<CockroachOptions>("CockroachRead", _ =>configuration.GetSection("CockroachDBRead"));
-        services.Configure<CockroachOptions>("CockroachWrite", _ => configuration.GetSection("CockroachDBWrite"));
+        services.Configure<CockroachOptions>("CockroachRead", options =>
+        {
+            configuration.GetSection("CockroachDBRead").Bind(options);
+        });
 
-        services.AddSingleton<CockroachOptionsProvider>();
+        services.Configure<CockroachOptions>("CockroachWrite", options =>
+        {
+            configuration.GetSection("CockroachDBWrite").Bind(options);
+        });
+
+        services.AddTransient<CockroachOptionsProvider>();
     }
 }
