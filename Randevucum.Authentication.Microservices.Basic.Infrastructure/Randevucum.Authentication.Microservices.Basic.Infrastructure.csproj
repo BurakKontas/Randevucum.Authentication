@@ -26,4 +26,8 @@
     <Folder Include="Persistence\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Randevucum.Authentication.Microservices.Basic.Domain\Randevucum.Authentication.Microservices.Basic.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
