@@ -1,6 +1,6 @@
 ﻿namespace Randevucum.Authentication.Microservices.Basic.Domain.Primitives;
 
-public abstract class BaseAggregateRoot
+public abstract class AggregateRoot
 {
     private readonly List<DomainEvent> _domainEvents = [];
 
