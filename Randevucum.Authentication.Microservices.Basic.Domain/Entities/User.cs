@@ -9,12 +9,13 @@ public class User
     public Phone? Phone { get; private set; }
     public Password PasswordHash { get; private set; }
     public bool IsEmailVerified { get; private set; }
+    public bool IsPhoneVerified { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
     protected User() { } // For EF Core
 
-    private User(UserId id, Email email, Password passwordHash, bool isEmailVerified, DateTime createdAt, DateTime updatedAt, Phone? phone)
+    private User(UserId id, Email email, Password passwordHash, bool isEmailVerified, DateTime createdAt, DateTime updatedAt, Phone? phone, bool isPhoneVerified)
     {
         Id = id;
         Email = email;
@@ -23,11 +24,12 @@ public class User
         CreatedAt = createdAt;
         UpdatedAt = updatedAt;
         Phone = phone;
+        IsPhoneVerified = isPhoneVerified;
     }
 
-    public static User Create(UserId id, Email email, Password passwordHash, bool isEmailVerified, DateTime createdAt, DateTime updatedAt, Phone? phone)
+    public static User Create(UserId id, Email email, Password passwordHash, bool isEmailVerified, DateTime createdAt, DateTime updatedAt, Phone? phone, bool isPhoneVerified)
     {
-        return new User(id, email, passwordHash, isEmailVerified, createdAt, updatedAt, phone);
+        return new User(id, email, passwordHash, isEmailVerified, createdAt, updatedAt, phone, isPhoneVerified);
 ;    }
     
     public void VerifyEmail()
@@ -51,5 +53,10 @@ public class User
     {
         Phone = phone;
         UpdatedAt = updatedAt;
+    }
+
+    public void VerifyPhone()
+    {
+        IsPhoneVerified = true;
     }
 }
