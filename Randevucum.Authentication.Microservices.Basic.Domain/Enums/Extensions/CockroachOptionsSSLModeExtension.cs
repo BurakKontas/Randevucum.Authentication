@@ -4,11 +4,13 @@ public static class CockroachOptionsSSLModeExtension
 {
     public static string Value(this CockroachOptionsSSLMode sslMode)
     {
-        return sslMode switch
+        var name = Enum.GetName(typeof(CockroachOptionsSSLMode), sslMode);
+
+        if (string.IsNullOrWhiteSpace(name))
         {
-            CockroachOptionsSSLMode.Disable => "Disable",
-            CockroachOptionsSSLMode.Enable => "Enable",
-            _ => throw new ArgumentOutOfRangeException(nameof(sslMode), sslMode, null)
-        };
+            throw new ArgumentOutOfRangeException(nameof(sslMode), sslMode, null);
+        }
+
+        return name;
     }
 }
