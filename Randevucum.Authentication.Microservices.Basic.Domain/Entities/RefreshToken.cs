@@ -12,8 +12,8 @@ public class RefreshToken
     public DateTime IssuedAt { get; private set; }
     public DateTime ExpiresAt { get; private set; }
     public DateTime? RevokedAt { get; private set; }
-    public bool IsLoggedOut { get; private set; }
     public DateTime? LoggedOutAt { get; private set; } 
+    public bool IsLoggedOut => LoggedOutAt != default;
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
     public bool IsRevoked => RevokedAt != default;
 
@@ -29,7 +29,6 @@ public class RefreshToken
         IssuedAt = DateTime.UtcNow;
         ExpiresAt = expiresAt;
         RevokedAt = null;
-        IsLoggedOut = false;
         LoggedOutAt = null;
     }
 

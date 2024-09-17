@@ -8,11 +8,11 @@ public class AuthProvider
     public AuthProviderId Id { get; private set; }
     public AuthProviderList ProviderName { get; private set; }
     public UserId UserId { get; private set; }
-    public AuthProviderId ProviderUserId { get; private set; }
+    public string ProviderUserId { get; private set; }
 
     protected AuthProvider() { } // For EF Core
 
-    private AuthProvider(AuthProviderId id, AuthProviderList providerName, UserId userId, AuthProviderId providerUserId)
+    private AuthProvider(AuthProviderId id, AuthProviderList providerName, UserId userId, string providerUserId)
     {
         Id = id;
         ProviderName = providerName;
@@ -20,7 +20,7 @@ public class AuthProvider
         ProviderUserId = providerUserId;
     }
 
-    public static AuthProvider Create(AuthProviderId id, AuthProviderList providerName, UserId userId, AuthProviderId providerUserId)
+    public static AuthProvider Create(AuthProviderId id, AuthProviderList providerName, UserId userId, string providerUserId)
     {
         return new AuthProvider(id, providerName, userId, providerUserId);
     }
