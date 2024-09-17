@@ -1,6 +1,6 @@
 ﻿namespace Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 
-public class UserId(Guid value) : Id(value)
+public class UserActivityId(Guid id) : Id(id)
 {
     
 }

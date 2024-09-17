@@ -8,10 +8,8 @@
 
   <ItemGroup>
     <Folder Include="DomainEvents\" />
-    <Folder Include="Entities\" />
     <Folder Include="Aggregates\" />
     <Folder Include="Repositories\" />
-    <Folder Include="ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
