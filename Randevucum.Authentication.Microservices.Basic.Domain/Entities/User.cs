@@ -13,6 +13,14 @@ public class User
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
+    public virtual ICollection<AuthProvider> AuthProviders { get; private set; }
+    public virtual ICollection<BearerToken> Tokens { get; private set; }
+    public virtual ICollection<EmailConfirmation> EmailConfirmations { get; private set; }
+    public virtual ICollection<PasswordResetRequest> PasswordResetRequests { get; private set; }
+    public virtual ICollection<PhoneConfirmation> PhoneConfirmations { get; private set; }
+    public virtual ICollection<RefreshToken> RefreshTokens { get; private set; }
+    public virtual ICollection<UserActivity> UserActivities { get; private set; }
+
     protected User() { } // For EF Core
 
     private User(UserId id, Email email, Password passwordHash, bool isEmailVerified, DateTime createdAt, DateTime updatedAt, Phone? phone, bool isPhoneVerified)

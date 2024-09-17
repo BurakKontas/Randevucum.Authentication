@@ -11,6 +11,8 @@ public class PasswordResetRequest
     public DateTime ExpiresAt { get; private set; }
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
 
+    public virtual User User { get; private set; }
+
     protected PasswordResetRequest() { } // For EF Core
 
     private PasswordResetRequest(PasswordResetRequestId id, UserId userId, string token, DateTime expiresAt)

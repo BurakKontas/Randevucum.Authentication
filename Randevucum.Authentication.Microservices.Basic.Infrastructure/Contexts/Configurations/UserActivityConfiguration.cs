@@ -26,5 +26,10 @@ public class UserActivityConfiguration : IEntityTypeConfiguration<UserActivity>
         builder.HasIndex(x => x.UserId);
 
         builder.HasIndex(x => x.ActivityType);
+
+        builder.HasOne(ua => ua.User)
+            .WithMany(u => u.UserActivities)
+            .HasForeignKey(ua => ua.UserId)
+            .IsRequired();
     }
 }

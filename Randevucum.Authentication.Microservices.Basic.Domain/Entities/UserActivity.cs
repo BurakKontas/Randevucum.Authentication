@@ -10,6 +10,8 @@ public class UserActivity
     public DateTime CreatedAt { get; private set; }
     public UserActivityType ActivityType { get; private set; }
 
+    public virtual User User { get; private set; }
+
     protected UserActivity() { } // For EF Core
 
     private UserActivity(UserActivityId id, UserId userId, UserActivityType activityType)

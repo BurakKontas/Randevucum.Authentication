@@ -39,5 +39,33 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.HasIndex(x => x.Phone)
             .IsUnique();
+
+        builder.HasMany(u => u.AuthProviders)
+            .WithOne(ap => ap.User)
+            .HasForeignKey(ap => ap.UserId);
+
+        builder.HasMany(u => u.Tokens)
+            .WithOne(t => t.User)
+            .HasForeignKey(t => t.UserId);
+
+        builder.HasMany(u => u.EmailConfirmations)
+            .WithOne(ec => ec.User)
+            .HasForeignKey(ec => ec.UserId);
+
+        builder.HasMany(u => u.PasswordResetRequests)
+            .WithOne(prr => prr.User)
+            .HasForeignKey(prr => prr.UserId);
+
+        builder.HasMany(u => u.PhoneConfirmations)
+            .WithOne(pc => pc.User)
+            .HasForeignKey(pc => pc.UserId);
+
+        builder.HasMany(u => u.RefreshTokens)
+            .WithOne(rt => rt.User)
+            .HasForeignKey(rt => rt.UserId);
+
+        builder.HasMany(u => u.UserActivities)
+            .WithOne(ua => ua.User)
+            .HasForeignKey(ua => ua.UserId);
     }
 }

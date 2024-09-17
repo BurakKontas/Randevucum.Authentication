@@ -10,6 +10,8 @@ public class AuthProvider
     public UserId UserId { get; private set; }
     public string ProviderUserId { get; private set; }
 
+    public virtual User User { get; private set; }
+
     protected AuthProvider() { } // For EF Core
 
     private AuthProvider(AuthProviderId id, AuthProviderList providerName, UserId userId, string providerUserId)

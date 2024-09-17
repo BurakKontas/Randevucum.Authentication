@@ -13,6 +13,8 @@ public class PhoneConfirmation
     public bool IsConfirmed { get; private set; }
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
 
+    public virtual User User { get; private set; }
+
     protected PhoneConfirmation() { } // For EF Core
 
     private PhoneConfirmation(PhoneConfirmationId id, UserId userId, Phone phoneNumber, string confirmationCode, DateTime expiresAt)

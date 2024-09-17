@@ -35,5 +35,10 @@ public class EmailConfirmationsConfiguration : IEntityTypeConfiguration<EmailCon
             .IsUnique();
 
         builder.HasIndex(x => x.IsConfirmed);
+
+        builder.HasOne(ec => ec.User)
+            .WithMany(u => u.EmailConfirmations)
+            .HasForeignKey(ec => ec.UserId)
+            .IsRequired();
     }
 }

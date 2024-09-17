@@ -13,6 +13,8 @@ public class EmailConfirmation
     public bool IsConfirmed { get; private set; }
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
 
+    public virtual User User { get; private set; }
+
     protected EmailConfirmation() { } // For EF Core
 
     private EmailConfirmation(EmailConfirmationId id, UserId userId, string confirmationCode, string confirmationToken, DateTime expiresAt)

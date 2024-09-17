@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Randevucum.Authentication.Microservices.Basic.Domain.Entities;
 using Randevucum.Authentication.Microservices.Basic.Domain.Enums;
 using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
-using Randevucum.Authentication.Microservices.Basic.Domain.Enums.Extensions
+using Randevucum.Authentication.Microservices.Basic.Domain.Enums.Extensions;
 
 namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Contexts.Configurations;
 
@@ -29,5 +29,10 @@ public class AuthProviderConfiguration : IEntityTypeConfiguration<AuthProvider>
         builder.HasIndex(x => x.ProviderName);
 
         builder.HasIndex(x => new { x.UserId, x.ProviderName }).IsUnique();
+
+        builder.HasOne(ap => ap.User)
+            .WithMany(u => u.AuthProviders)
+            .HasForeignKey(ap => ap.UserId)
+            .IsRequired();
     }
 }

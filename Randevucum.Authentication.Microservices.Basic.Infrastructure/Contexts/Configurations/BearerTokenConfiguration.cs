@@ -39,5 +39,10 @@ public class BearerTokenConfiguration : IEntityTypeConfiguration<BearerToken>
         builder.HasIndex(x => x.UserId);
 
         builder.HasIndex(x => x.Token);
+
+        builder.HasOne(bt => bt.User)
+            .WithMany(u => u.Tokens)
+            .HasForeignKey(bt => bt.UserId)
+            .IsRequired();
     }
 }

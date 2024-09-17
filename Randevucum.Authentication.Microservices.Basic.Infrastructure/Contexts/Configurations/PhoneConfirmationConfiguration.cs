@@ -27,5 +27,10 @@ public class PhoneConfirmationConfiguration : IEntityTypeConfiguration<PhoneConf
         builder.Property(x => x.ExpiresAt);
 
         builder.Property(x => x.IsConfirmed);
+
+        builder.HasOne(pc => pc.User)
+            .WithMany(u => u.PhoneConfirmations)
+            .HasForeignKey(pc => pc.UserId)
+            .IsRequired();
     }
 }

@@ -28,5 +28,10 @@ public class PasswordResetRequestConfiguration : IEntityTypeConfiguration<Passwo
 
         builder.HasIndex(x => x.Token)
             .IsUnique();
+
+        builder.HasOne(prr => prr.User)
+            .WithMany(u => u.PasswordResetRequests)
+            .HasForeignKey(prr => prr.UserId)
+            .IsRequired();
     }
 }

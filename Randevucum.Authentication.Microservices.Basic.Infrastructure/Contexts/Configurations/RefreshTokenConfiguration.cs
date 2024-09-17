@@ -40,5 +40,10 @@ public class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
             .IsUnique();
 
         builder.HasIndex(x => x.IpAddress);
+
+        builder.HasOne(rt => rt.User)
+            .WithMany(u => u.RefreshTokens)
+            .HasForeignKey(rt => rt.UserId)
+            .IsRequired();
     }
 }

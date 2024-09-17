@@ -17,6 +17,8 @@ public class RefreshToken
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
     public bool IsRevoked => RevokedAt != default;
 
+    public virtual User User { get; private set; }
+
     protected RefreshToken() { } // For EF Core
 
     private RefreshToken(RefreshTokenId id, UserId userId, string refreshToken, IpAddress ipAddress, UserAgent userAgent, DateTime expiresAt)
