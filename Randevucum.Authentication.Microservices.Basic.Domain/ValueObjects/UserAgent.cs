@@ -1,8 +1,9 @@
 ﻿using System.Text.RegularExpressions;
+using Randevucum.Authentication.Microservices.Basic.Domain.Primitives;
 
 namespace Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 
-public class UserAgent
+public class UserAgent : ValueObject<UserAgent>
 {
     private static readonly Regex UserAgentRegex = new Regex(@"^[a-zA-Z0-9\s\.\(\);\/-]+$", RegexOptions.Compiled);
 
@@ -20,5 +21,10 @@ public class UserAgent
     private bool IsValid(string value)
     {
         return !string.IsNullOrWhiteSpace(value) && UserAgentRegex.IsMatch(value);
+    }
+
+    protected override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
     }
 }

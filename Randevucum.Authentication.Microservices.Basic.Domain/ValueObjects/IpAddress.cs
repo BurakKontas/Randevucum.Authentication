@@ -1,6 +1,8 @@
-﻿namespace Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
+﻿using Randevucum.Authentication.Microservices.Basic.Domain.Primitives;
 
-public class IpAddress
+namespace Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
+
+public class IpAddress : ValueObject<IpAddress>
 {
     public string Value { get; }
 
@@ -16,5 +18,10 @@ public class IpAddress
     private bool IsValid(string value)
     {
         return !string.IsNullOrWhiteSpace(value) && System.Net.IPAddress.TryParse(value, out _);
+    }
+
+    protected override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
     }
 }
