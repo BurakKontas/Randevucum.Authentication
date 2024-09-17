@@ -12,7 +12,7 @@ public class Password : ValueObject<Password>
     {
         if (string.IsNullOrWhiteSpace(value) || value.Length < 6)
         {
-            throw new ArgumentException("Şifre en az 6 karakter olmalıdır.");
+            throw new ArgumentException("Password must be at least 6 characters long.");
         }
 
         Value = value;
