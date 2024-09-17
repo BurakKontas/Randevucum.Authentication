@@ -3,6 +3,7 @@
 public enum UserActivityType
 {
     Login,
+    LoginAttempt,
     Register,
     PasswordResetRequest,
     PasswordReset,

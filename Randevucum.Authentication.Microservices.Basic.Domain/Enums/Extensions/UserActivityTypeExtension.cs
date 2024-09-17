@@ -15,4 +15,14 @@ public static class UserActivityTypeExtension
 
         return name;
     }
+
+    public static UserActivityType ToUserActivityType(this string value)
+    {
+        if (Enum.TryParse<UserActivityType>(value, true, out var userActivityType))
+        {
+            return userActivityType;
+        }
+
+        throw new ArgumentOutOfRangeException(nameof(value), value, null);
+    }
 }

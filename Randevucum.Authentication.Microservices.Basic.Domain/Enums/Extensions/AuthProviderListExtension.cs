@@ -13,4 +13,14 @@ public static class AuthProviderListExtension
 
         return name;
     }
+
+    public static AuthProviderList ToAuthProviderList(this string value)
+    {
+        if (Enum.TryParse<AuthProviderList>(value, true, out var authProvider))
+        {
+            return authProvider;
+        }
+
+        throw new ArgumentOutOfRangeException(nameof(value), value, null);
+    }
 }
