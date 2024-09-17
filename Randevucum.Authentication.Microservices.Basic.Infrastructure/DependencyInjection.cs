@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Randevucum.Authentication.Microservices.Basic.Domain.Options;
 using Randevucum.Authentication.Microservices.Basic.Domain.Providers;
 using Randevucum.Authentication.Microservices.Basic.Infrastructure.Contexts;
@@ -13,6 +14,7 @@ public static class DependencyInjection
     {
         services.AddCockroachOptions(configuration);
         services.AddCockroachContexts();
+        services.MigrateDatabase();
         return services;
     }
 
@@ -42,5 +44,24 @@ public static class DependencyInjection
         {
             options.UseNpgsql(cockroachOptionsProvider.Write.ConnectionString, b => b.MigrationsAssembly(migrationAssembly));
         });
+    }
+
+    private static void MigrateDatabase(this IServiceCollection services)
+    {
+        using var serviceProvider = services.BuildServiceProvider();
+        try
+        {
+            var writeDbContext = serviceProvider.GetRequiredService<WriteDbContext>();
+            var readDbContext = serviceProvider.GetRequiredService<ReadDbContext>();
+
+            writeDbContext.Database.Migrate();
+            readDbContext.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            var assembly = InfrastructureAssembly.Assembly;
+            var logger = serviceProvider.GetRequiredService<ILogger<object>>();
+            logger.LogError(ex, $"An error occurred during migration in assembly {assembly.GetName().Name}.");
+        }
     }
 }

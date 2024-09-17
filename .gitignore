@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /docker-compose.dcproj
 /.todo
+/Randevucum.Authentication.Microservices.Basic.Infrastructure/Migrations

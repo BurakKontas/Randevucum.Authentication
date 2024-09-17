@@ -22,7 +22,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(x => x.Phone)
             .HasConversion(
-                phone => phone != null! ? phone.Value : null,
+                phone => phone! != null! ? phone.Value : null,
                 value => value != null ? new Phone(value) : null
             );
 

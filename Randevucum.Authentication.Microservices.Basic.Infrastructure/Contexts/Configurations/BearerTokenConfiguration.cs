@@ -22,8 +22,8 @@ public class BearerTokenConfiguration : IEntityTypeConfiguration<BearerToken>
 
         builder.Property(x => x.RefreshTokenId)
             .HasConversion(
-                refreshTokenId => refreshTokenId != null! ? refreshTokenId.Value : (Guid?)null,
-                value => value != null ? new RefreshTokenId(value.Value) : (RefreshTokenId?)null
+                refreshTokenId => refreshTokenId! != null! ? (Guid?)refreshTokenId.Value : null,
+                value => value.HasValue ? new RefreshTokenId(value.Value) : null
             );
 
         builder.Property(x => x.IpAddress)
