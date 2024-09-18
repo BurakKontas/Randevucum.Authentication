@@ -3,22 +3,28 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Randevucum.Authentication.Microservices.Basic.Domain.Entities;
 using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 
-namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Contexts.Configurations;
+namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Persistence.Configurations;
 
-public class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
+public class BearerTokenConfiguration : IEntityTypeConfiguration<BearerToken>
 {
-    public void Configure(EntityTypeBuilder<RefreshToken> builder)
+    public void Configure(EntityTypeBuilder<BearerToken> builder)
     {
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)
-            .HasConversion(refreshTokenId => refreshTokenId.Value, value => new RefreshTokenId(value));
+            .HasConversion(tokenId => tokenId.Value, value => new TokenId(value));
 
         builder.Property(x => x.UserId)
             .HasConversion(userId => userId.Value, value => new UserId(value));
 
         builder.Property(x => x.Token)
             .HasMaxLength(512);
+
+        builder.Property(x => x.RefreshTokenId)
+            .HasConversion(
+                refreshTokenId => refreshTokenId! != null! ? (Guid?)refreshTokenId.Value : null,
+                value => value.HasValue ? new RefreshTokenId(value.Value) : null
+            );
 
         builder.Property(x => x.IpAddress)
             .HasConversion(ipAddress => ipAddress.Value, value => new IpAddress(value));
@@ -30,25 +36,13 @@ public class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
 
         builder.Property(x => x.ExpiresAt);
 
-        builder.Property(x => x.RevokedAt);
-
-        builder.Property(x => x.LoggedOutAt);
-
         builder.HasIndex(x => x.UserId);
 
-        builder.HasIndex(x => x.Token)
-            .IsUnique();
+        builder.HasIndex(x => x.Token);
 
-        builder.HasIndex(x => x.IpAddress);
-
-        builder.HasOne(rt => rt.User)
-            .WithMany(u => u.RefreshTokens)
-            .HasForeignKey(rt => rt.UserId)
-            .IsRequired();
-
-        builder.HasMany(rt => rt.BearerTokens)
-            .WithOne(bt => bt.RefreshToken)
-            .HasForeignKey(bt => bt.RefreshTokenId)
+        builder.HasOne(bt => bt.User)
+            .WithMany(u => u.Tokens)
+            .HasForeignKey(bt => bt.UserId)
             .IsRequired();
     }
 }

@@ -4,7 +4,7 @@ using Randevucum.Authentication.Microservices.Basic.Domain.Entities;
 using Randevucum.Authentication.Microservices.Basic.Domain.Enums.Extensions;
 using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 
-namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Contexts.Configurations;
+namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Persistence.Configurations;
 
 public class UserActivityConfiguration : IEntityTypeConfiguration<UserActivity>
 {

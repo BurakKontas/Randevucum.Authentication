@@ -1,14 +1,11 @@
 ﻿using System.Reflection;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Randevucum.Authentication.Microservices.Basic.Domain.Entities;
 
-namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Contexts;
+namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Persistence;
 
-public class WriteDbContext(DbContextOptions<WriteDbContext> options, IPublisher publisher) : DbContext(options)
+public class ReadDbContext(DbContextOptions<ReadDbContext> options) : DbContext(options)
 {
-    private readonly IPublisher _publisher = publisher;
-
     public DbSet<User> Users { get; set; }
     public DbSet<AuthProvider> AuthProviders { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
@@ -27,4 +24,7 @@ public class WriteDbContext(DbContextOptions<WriteDbContext> options, IPublisher
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        => throw new ApplicationException("Read context cannot write any data!");
 }

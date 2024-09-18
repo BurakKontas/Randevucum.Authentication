@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Randevucum.Authentication.Microservices.Basic.Domain.Entities;
-using Randevucum.Authentication.Microservices.Basic.Domain.Enums;
-using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 using Randevucum.Authentication.Microservices.Basic.Domain.Enums.Extensions;
+using Randevucum.Authentication.Microservices.Basic.Domain.ValueObjects;
 
-namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Contexts.Configurations;
+namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Persistence.Configurations;
 
 public class AuthProviderConfiguration : IEntityTypeConfiguration<AuthProvider>
 {
