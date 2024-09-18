@@ -6,10 +6,8 @@ using Randevucum.Authentication.Microservices.Basic.Domain.Primitives;
 
 namespace Randevucum.Authentication.Microservices.Basic.Infrastructure.Persistence;
 
-public class WriteDbContext(DbContextOptions<WriteDbContext> options, IPublisher publisher) : DbContext(options)
+public class WriteDbContext(DbContextOptions<WriteDbContext> options) : DbContext(options)
 {
-    private readonly IPublisher _publisher = publisher;
-
     public DbSet<User> Users { get; set; }
     public DbSet<AuthProvider> AuthProviders { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
@@ -18,7 +16,6 @@ public class WriteDbContext(DbContextOptions<WriteDbContext> options, IPublisher
     public DbSet<PasswordResetRequest> PasswordResetsRequests { get; set; }
     public DbSet<UserActivity> UserActivities { get; set; }
     public DbSet<PhoneConfirmation> PhoneConfirmations { get; set; }
-    public DbSet<OutboxMessage> OutboxMessages { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -32,17 +29,19 @@ public class WriteDbContext(DbContextOptions<WriteDbContext> options, IPublisher
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        var domainEvents = ChangeTracker.Entries<AggregateRoot>()
-            .Select(e => e.Entity)
-            .Where(e => e.DomainEvents.Any())
-            .SelectMany(e => e.DomainEvents);
-
-        foreach (var domainEvent in domainEvents)
+        await using var transaction = await Database.BeginTransactionAsync(cancellationToken);
+        try
         {
-            await _publisher.Publish(domainEvent, cancellationToken);
-        }
+            var result = await base.SaveChangesAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
 
-        return await base.SaveChangesAsync(cancellationToken);
+            return result;
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync(cancellationToken);
+            throw;
+        }
     }
 
 }
