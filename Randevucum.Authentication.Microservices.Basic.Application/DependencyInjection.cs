@@ -9,7 +9,6 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services.DefineMassTransit(configuration);
-        services.DefineMediatr();
         return services;
     }
 
@@ -34,10 +33,5 @@ public static class DependencyInjection
                 cfg.ConfigureEndpoints(context);
             });
         });
-    }
-
-    private static void DefineMediatr(this IServiceCollection services)
-    {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(ApplicationAssembly.Assembly));
     }
 }
