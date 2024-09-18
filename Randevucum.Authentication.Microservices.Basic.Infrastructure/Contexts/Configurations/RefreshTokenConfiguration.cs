@@ -45,5 +45,10 @@ public class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
             .WithMany(u => u.RefreshTokens)
             .HasForeignKey(rt => rt.UserId)
             .IsRequired();
+
+        builder.HasMany(rt => rt.BearerTokens)
+            .WithOne(bt => bt.RefreshToken)
+            .HasForeignKey(bt => bt.RefreshTokenId)
+            .IsRequired();
     }
 }

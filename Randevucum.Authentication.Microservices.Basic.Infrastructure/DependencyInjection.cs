@@ -52,10 +52,10 @@ public static class DependencyInjection
         try
         {
             var writeDbContext = serviceProvider.GetRequiredService<WriteDbContext>();
-            var readDbContext = serviceProvider.GetRequiredService<ReadDbContext>();
+            //var readDbContext = serviceProvider.GetRequiredService<ReadDbContext>();
 
+            //readDbContext.Database.Migrate(); // has no privilege to create database
             writeDbContext.Database.Migrate();
-            readDbContext.Database.Migrate();
         }
         catch (Exception ex)
         {

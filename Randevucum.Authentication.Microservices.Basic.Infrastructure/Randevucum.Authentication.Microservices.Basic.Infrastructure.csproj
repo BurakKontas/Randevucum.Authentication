@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Mappers\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Repositories\" />
     <Folder Include="Persistence\" />
   </ItemGroup>
