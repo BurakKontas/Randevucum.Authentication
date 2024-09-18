@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Randevucum.Authentication.Microservices.Basic.Domain.Options;
 using Randevucum.Authentication.Microservices.Basic.Domain.Providers;
-using Randevucum.Authentication.Microservices.Basic.Domain.Repositories;
 using Randevucum.Authentication.Microservices.Basic.Infrastructure.Persistence;
 
 namespace Randevucum.Authentication.Microservices.Basic.Infrastructure;
