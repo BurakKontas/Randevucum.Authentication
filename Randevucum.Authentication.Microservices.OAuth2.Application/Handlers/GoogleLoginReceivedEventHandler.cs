@@ -7,7 +7,8 @@ public class GoogleLoginReceivedEventHandler : IConsumer<GoogleLoginReceivedEven
 {
     public async Task Consume(ConsumeContext<GoogleLoginReceivedEvent> context)
     {
-        var response = new GoogleLoginResultedEvent(true, "token", "refreshToken");
+        var response = new GoogleLoginSuccessEvent("token", "refreshToken");
+        //var response = new GoogleLoginFailedEvent("message");
 
         await context.RespondAsync(response);
     }
