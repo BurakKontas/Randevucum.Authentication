@@ -16,11 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Randevucum.Authentication.Common\Randevucum.Authentication.Common.csproj" />
     <ProjectReference Include="..\Randevucum.Authentication.Microservices.Basic.Domain\Randevucum.Authentication.Microservices.Basic.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Handlers\" />
   </ItemGroup>
 
 </Project>
