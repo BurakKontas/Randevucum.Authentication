@@ -18,6 +18,7 @@ public class RefreshToken
     public bool IsRevoked => RevokedAt != default;
 
     public virtual User User { get; private set; }
+    public virtual ICollection<BearerToken> BearerTokens { get; private set; }
 
     protected RefreshToken() { } // For EF Core
 
@@ -39,8 +40,18 @@ public class RefreshToken
         return new RefreshToken(id, userId, refreshToken, ipAddress, userAgent, expiresAt);
     }
 
+    public void Extend(DateTime newExpiresAt)
+    {
+        ExpiresAt = newExpiresAt;
+    }
+
     public void Revoke(DateTime revokedAt)
     {
         RevokedAt = revokedAt;
+    }
+
+    public void RemoveAllBearerTokens()
+    {
+        BearerTokens.Clear();
     }
 }

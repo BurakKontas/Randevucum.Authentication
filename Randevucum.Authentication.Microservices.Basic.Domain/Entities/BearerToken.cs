@@ -15,6 +15,7 @@ public class BearerToken
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
 
     public virtual User User { get; private set; }
+    public virtual RefreshToken RefreshToken { get; private set; }
 
     protected BearerToken() { } // For EF Core
 

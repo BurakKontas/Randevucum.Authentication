@@ -9,6 +9,7 @@ public class PasswordResetRequest
     public string Token { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime ExpiresAt { get; private set; }
+    public bool IsUsed { get; private set; }
     public bool IsExpired => DateTime.UtcNow > ExpiresAt;
 
     public virtual User User { get; private set; }
@@ -22,10 +23,16 @@ public class PasswordResetRequest
         Token = token;
         CreatedAt = DateTime.UtcNow;
         ExpiresAt = expiresAt;
+        IsUsed = false;
     }
 
     public static PasswordResetRequest Create(PasswordResetRequestId id, UserId userId, string token, DateTime expiresAt)
     {
         return new PasswordResetRequest(id, userId, token, expiresAt);
+    }
+
+    public void Use()
+    {
+        IsUsed = true;
     }
 }

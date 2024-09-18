@@ -11,6 +11,8 @@ public static class CockroachOptionsSSLModeExtension
             throw new ArgumentOutOfRangeException(nameof(sslMode), sslMode, null);
         }
 
+        name = name.Replace("_", "-");
+
         return name;
     }
 }

@@ -3,5 +3,9 @@
 public enum CockroachOptionsSSLMode
 {
     Disable,
-    Enable,
+    Allow,
+    Prefer,
+    Require,
+    Verify_Ca,
+    Verify_Full
 }

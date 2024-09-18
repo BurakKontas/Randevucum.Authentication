@@ -13,5 +13,5 @@ public class CockroachOptions
     public required string Password { get; set; }
     public required CockroachOptionsSSLMode SSLMode { get; set; }
 
-    public string ConnectionString => $"Host={Host};Port={Port};Database={Database};Username={Username};Password={Password};SSL Mode={SSLMode.Value()}";
+    public string ConnectionString => $"Host={Host};Port={Port};Database={Database};Username={Username};Password={Password};SSL Mode={SSLMode.Value()};Trust Server Certificate=True";
 }
