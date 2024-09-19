@@ -6,7 +6,6 @@ public record UserRegisterReceivedEvent(
     string AuthProvider, 
     string IpAddress,
     string UserAgent,
-    string? Phone = null, 
     string? ProviderUserId = null,
     bool IsEmailVerified = false, 
     bool IsPhoneVerified = false

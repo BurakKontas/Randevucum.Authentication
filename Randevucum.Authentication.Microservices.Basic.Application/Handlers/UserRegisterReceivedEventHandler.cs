@@ -36,7 +36,6 @@ public class UserRegisterReceivedEventHandler(IBus bus, ReadDbContext readDbCont
         var userId = new UserId(Guid.NewGuid());
         var email = new Email(context.Message.Email);
         var password = new Password(context.Message.Password);
-        var phone = context.Message.Phone is not null ? new Phone(context.Message.Phone) : null;
         var isEmailVerified = context.Message.IsEmailVerified;
         var isPhoneVerified = context.Message.IsPhoneVerified;
 
