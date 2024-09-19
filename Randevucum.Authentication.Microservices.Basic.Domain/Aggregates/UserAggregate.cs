@@ -18,7 +18,7 @@ public class UserAggregate : AggregateRoot
     public IpAddress IpAddress { get; init; }
     public UserAgent UserAgent { get; init; }
 
-    public ICollection<AuthProvider> AuthProviders => User.AuthProviders ?? throw new InvalidOperationException("User is not found.");
+    public ICollection<AuthProvider> AuthProviders => User.AuthProviders;
     public ICollection<BearerToken> BearerTokens => User.Tokens;
     public ICollection<RefreshToken> RefreshTokens => User.RefreshTokens;
     public ICollection<PasswordResetRequest> PasswordResetRequests => User.PasswordResetRequests;
@@ -57,9 +57,6 @@ public class UserAggregate : AggregateRoot
 
     public BearerToken? Login(string passwordHash)
     {
-        if (User is null)
-            throw new InvalidOperationException("User is not found.");
-
         UserActivity userActivity;
         if (!VerifyPassword(passwordHash))
         {
@@ -83,9 +80,6 @@ public class UserAggregate : AggregateRoot
 
     public void ChangeEmail(string newEmail)
     {
-        if (User is null)
-            throw new InvalidOperationException("User is not found.");
-
         if (string.IsNullOrEmpty(newEmail))
             throw new ArgumentException("Email cannot be empty.");
 
@@ -96,9 +90,6 @@ public class UserAggregate : AggregateRoot
 
     public void ConfirmEmail()
     {
-        if (User is null)
-            throw new InvalidOperationException("User is not found.");
-
         if (User.IsEmailVerified)
             throw new InvalidOperationException("Email is already confirmed.");
 
@@ -109,9 +100,6 @@ public class UserAggregate : AggregateRoot
 
     public void ChangePassword(string newPasswordHash)
     {
-        if (User is null)
-            throw new InvalidOperationException("User is not found.");
-
         if (string.IsNullOrEmpty(newPasswordHash))
             throw new ArgumentException("Password cannot be empty.");
 
@@ -122,9 +110,6 @@ public class UserAggregate : AggregateRoot
 
     public void AddAuthProvider(AuthProviderList provider, string providerUserId)
     {
-        if (User is null)
-            throw new InvalidOperationException("User is not found.");
-
         if (AuthProviders.Any(p => p.ProviderName == provider))
             throw new InvalidOperationException($"{provider.Value()} is already added.");
 
@@ -138,9 +123,6 @@ public class UserAggregate : AggregateRoot
 
     public void AddPasswordResetRequest(PasswordResetRequest request)
     {
-        if (User is null)
-            throw new InvalidOperationException("User is not found.");
-
         PasswordResetRequests.Add(request);
         var userActivity = UserActivity.Create(new UserActivityId(Guid.NewGuid()), User.Id, UserActivityType.PasswordResetRequest);
         AddUserActivity(userActivity);
@@ -154,6 +136,6 @@ public class UserAggregate : AggregateRoot
 
     private bool VerifyPassword(string passwordHash)
     {
-        return User!.PasswordHash.Verify(passwordHash);
+        return User.PasswordHash.Verify(passwordHash);
     }
 }
