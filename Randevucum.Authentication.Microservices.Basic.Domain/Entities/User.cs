@@ -38,8 +38,23 @@ public class User
     public static User Create(UserId id, Email email, Password passwordHash, bool isEmailVerified, DateTime createdAt, DateTime updatedAt, Phone? phone, bool isPhoneVerified)
     {
         return new User(id, email, passwordHash, isEmailVerified, createdAt, updatedAt, phone, isPhoneVerified);
-;    }
-    
+    }
+
+    public static User Create(UserId id, Email email, Password passwordHash, bool isEmailVerified, DateTime createdAt, DateTime updatedAt)
+    {
+        return new User(id, email, passwordHash, isEmailVerified, createdAt, updatedAt, null, false);
+    }
+
+    public static User Create(UserId id, Email email, Password passwordHash, bool isEmailVerified)
+    {
+        return new User(id, email, passwordHash, isEmailVerified, DateTime.UtcNow, DateTime.UtcNow, null, false);
+    }
+
+    public static User Create(UserId id, Email email, Password passwordHash)
+    {
+        return new User(id, email, passwordHash, false, DateTime.UtcNow, DateTime.UtcNow, null, false);
+    }
+
     public void VerifyEmail()
     {
         IsEmailVerified = true;
