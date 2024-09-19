@@ -30,6 +30,8 @@ public class UserRegisterReceivedEventHandler(IBus bus, ReadDbContext readDbCont
             return;
         }
 
+        var userAggregate = new UserAggregate(new IpAddress(context.Message.IpAddress), new UserAgent(context.Message.UserAgent));
+
         //create user
         var userId = new UserId(Guid.NewGuid());
         var email = new Email(context.Message.Email);
@@ -38,17 +40,11 @@ public class UserRegisterReceivedEventHandler(IBus bus, ReadDbContext readDbCont
         var isEmailVerified = context.Message.IsEmailVerified;
         var isPhoneVerified = context.Message.IsPhoneVerified;
 
-        var user = User.Create(userId, email, password, isEmailVerified, DateTime.UtcNow, DateTime.Now, phone,
-            isPhoneVerified);
-
-        //add auth provider
-        var userAggregate = new UserAggregate(user, new IpAddress(context.Message.IpAddress), new UserAgent(context.Message.UserAgent));
-
         var providerUserId = userId.Value.ToString();
         if(context.Message.ProviderUserId is not null)
             providerUserId = context.Message.ProviderUserId;
 
-        userAggregate.AddAuthProvider(authProvider, providerUserId);
+        var user = userAggregate.Register(email, password, authProvider, providerUserId, isEmailVerified, isPhoneVerified);
 
         //save user
         await _writeDbContext.Users.AddAsync(user, cancellationToken: context.CancellationToken);
