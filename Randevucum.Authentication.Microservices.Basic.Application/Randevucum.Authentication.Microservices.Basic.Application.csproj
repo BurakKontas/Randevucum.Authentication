@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Randevucum.Authentication.Common\Randevucum.Authentication.Common.csproj" />
     <ProjectReference Include="..\Randevucum.Authentication.Microservices.Basic.Domain\Randevucum.Authentication.Microservices.Basic.Domain.csproj" />
+    <ProjectReference Include="..\Randevucum.Authentication.Microservices.Basic.Infrastructure\Randevucum.Authentication.Microservices.Basic.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

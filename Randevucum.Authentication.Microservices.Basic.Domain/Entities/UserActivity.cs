@@ -9,6 +9,8 @@ public class UserActivity
     public UserId UserId { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public UserActivityType ActivityType { get; private set; }
+    public IpAddress? IpAddress { get; private set; }
+    public UserAgent? UserAgent { get; private set; }
 
     public virtual User User { get; private set; }
 
@@ -25,5 +27,11 @@ public class UserActivity
     public static UserActivity Create(UserActivityId id, UserId userId, UserActivityType activityType)
     {
         return new UserActivity(id, userId, activityType);
+    }
+
+    public void AddBrowserIdentity(IpAddress ipAddress, UserAgent userAgent)
+    {
+        IpAddress = ipAddress;
+        UserAgent = userAgent;
     }
 }

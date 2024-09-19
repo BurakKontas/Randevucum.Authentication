@@ -22,4 +22,9 @@ public class Password : ValueObject<Password>
     {
         yield return Value;
     }
+
+    public bool Verify(string passwordHash)
+    {
+        return Value == passwordHash;
+    }
 }

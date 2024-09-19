@@ -16,4 +16,5 @@ public enum UserActivityType
     ChangePassword,
     ChangeEmail,
     ChangePhoneNumber,
+    AddAuthProvider
 }
